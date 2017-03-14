@@ -31,7 +31,7 @@ class GameScene: SKScene {
             starsBackground.zPosition = -1
             starsBackground.position = CGPoint(x:0, y: starsBackground.size.height * CGFloat(i))
             addChild(starsBackground)
-            let moveDown = SKAction.moveBy (x: 0, y: -starsBackground.size.height, duration: 0)
+            let moveDown = SKAction.moveBy (x: 0, y: -starsBackground.size.height, duration: 20)
             let moveReset = SKAction.moveBy(x: 0, y: starsBackground.size.height, duration: 0)
             let moveLoop = SKAction.sequence ([moveDown, moveReset])
             let moveForever = SKAction.repeatForever(moveLoop)
@@ -61,6 +61,6 @@ class GameScene: SKScene {
         ball.physicsBody?.linearDamping = 0
         ball.physicsBody?.contactTestBitMask = (ball.physicsBody?.collisionBitMask)!
         
-        addChild(ball) // ass ball object to the view
+        addChild(ball) // add ball object to the view
     }
 }
