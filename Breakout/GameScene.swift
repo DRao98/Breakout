@@ -6,7 +6,7 @@
 //  Copyright © 2017 Dilip Rao. All rights reserved.
 //
 
-import SpriteKit
+import SpriteKit 
 import GameplayKit
 
 class GameScene: SKScene {
@@ -20,6 +20,7 @@ class GameScene: SKScene {
         makeBall()
         makePaddle()
         makeBrick()
+        makeLoseZone()
     }
     
     override func touchesBegan(_ _touches: Set<UITouch>, with event: UIEvent?) {
@@ -87,6 +88,9 @@ class GameScene: SKScene {
         loseZone.position = CGPoint(x: frame.midX,
                                     y: frame.minY + 25)
         loseZone.name = "loseZone"
+        loseZone.physicsBody = SKPhysicsBody(rectangleOf: loseZone.size)
+        loseZone.physicsBody?.isDynamic = false
+        addChild(loseZone)
     }
     
     func makeBrick() {
