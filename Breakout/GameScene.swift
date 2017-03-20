@@ -6,7 +6,7 @@
 //  Copyright © 2017 Dilip Rao. All rights reserved.
 //
 
-import SpriteKit 
+import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
@@ -14,6 +14,10 @@ class GameScene: SKScene {
     var ball = SKShapeNode()
     var paddle = SKSpriteNode()
     var brick = SKSpriteNode()
+    var startLabel = SKLabelNode()
+    var extraBalls = SKLabelNode()
+    var score = SKLabelNode()
+    
     
     override func didMove(to view: SKView) {
         createBackground()
@@ -21,12 +25,21 @@ class GameScene: SKScene {
         makePaddle()
         makeBrick()
         makeLoseZone()
+        placeBricks()
     }
-    
+
     override func touchesBegan(_ _touches: Set<UITouch>, with event: UIEvent?) {
+    
+    
     }
     
     override func touchesMoved(_ _touches: Set<UITouch>, with event: UIEvent?) {
+   
+    
+    }
+    
+    func labels () {
+        
     }
     
     func createBackground() {
@@ -92,7 +105,17 @@ class GameScene: SKScene {
         loseZone.physicsBody?.isDynamic = false
         addChild(loseZone)
     }
-    
+    func placeBricks() {
+        brick = SKSpriteNode(color: UIColor.green,
+                             size: CGSize(width: frame.width/5,
+                                          height: frame.height/10))
+        brick.position = CGPoint(x: frame.midX - 10,
+                                 y: frame.maxY - 10)
+        addChild(brick)
+        
+        
+        
+    }
     func makeBrick() {
         brick = SKSpriteNode(color: UIColor.blue,
                              size: CGSize(width: frame.width/5,
