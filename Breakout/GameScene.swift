@@ -108,9 +108,9 @@ class GameScene: SKScene {
     func placeBricks() {
         brick = SKSpriteNode(color: UIColor.green,
                              size: CGSize(width: frame.width/5,
-                                          height: frame.height/10))
-        brick.position = CGPoint(x: frame.midX - 10,
-                                 y: frame.maxY - 10)
+                                          height: frame.height/25))
+        brick.position = CGPoint(x: frame.midX,
+                                 y: frame.maxY - 60)
         addChild(brick)
         
         
