@@ -14,6 +14,10 @@ class GameScene: SKScene {
     var ball = SKShapeNode()
     var paddle = SKSpriteNode()
     var brick = SKSpriteNode()
+    var startLabel = SKLabelNode()
+    var extraBalls = SKLabelNode()
+    var score = SKLabelNode()
+    
     
     override func didMove(to view: SKView) {
         createBackground()
@@ -22,11 +26,19 @@ class GameScene: SKScene {
         makeBrick()
         loseZone()
     }
-    
+
     override func touchesBegan(_ _touches: Set<UITouch>, with event: UIEvent?) {
+    
+    
     }
     
     override func touchesMoved(_ _touches: Set<UITouch>, with event: UIEvent?) {
+   
+    
+    }
+    
+    func labels () {
+        
     }
     
     func createBackground() {
@@ -88,8 +100,21 @@ class GameScene: SKScene {
         loseZone.position = CGPoint(x: frame.midX,
                                     y: frame.minY + 25)
         loseZone.name = "loseZone"
+        loseZone.physicsBody = SKPhysicsBody(rectangleOf: loseZone.size)
+        loseZone.physicsBody?.isDynamic = false
+        addChild(loseZone)
     }
-    
+    func placeBricks() {
+        brick = SKSpriteNode(color: UIColor.green,
+                             size: CGSize(width: frame.width/5,
+                                          height: frame.height/25))
+        brick.position = CGPoint(x: frame.midX,
+                                 y: frame.maxY - 60)
+        addChild(brick)
+        
+        
+        
+    }
     func makeBrick() {
         brick = SKSpriteNode(color: UIColor.blue,
                              size: CGSize(width: frame.width/5,
