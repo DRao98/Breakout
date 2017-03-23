@@ -27,7 +27,15 @@ class GameScene: SKScene {
         makeLoseZone()
         placeBricks()
     }
+    func reset() {
+        ball.removeFromParent()
+        makeBall()
+        makePaddle()
+        makeBrick()
+        makeLoseZone()
+        placeBricks()
 
+    }
     override func touchesBegan(_ _touches: Set<UITouch>, with event: UIEvent?) {
     
     
