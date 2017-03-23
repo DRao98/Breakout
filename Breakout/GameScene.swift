@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var ball = SKShapeNode()
     var paddle = SKSpriteNode()
@@ -25,6 +25,10 @@ class GameScene: SKScene {
         makePaddle()
         makeBrick()
         loseZone()
+        moveBall()
+        
+        physicsWorld.contactDelegate = self
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
 
     override func touchesBegan(_ _touches: Set<UITouch>, with event: UIEvent?) {
@@ -33,6 +37,16 @@ class GameScene: SKScene {
     }
     
     override func touchesMoved(_ _touches: Set<UITouch>, with event: UIEvent?) {
+        for drag in _touches{
+            let location = drag.location(in:self)
+            // when finger is dragging paddle, it will move.
+            if(playingGame) {
+                paddle.position.x = location.x
+                // when let go, it will stay in positon.
+                
+            }
+        }
+        
    
     
     }
@@ -54,6 +68,11 @@ class GameScene: SKScene {
             let moveForever = SKAction.repeatForever(moveLoop)
             starsBackground.run(moveForever)
         }
+    }
+    
+    func moveBall() {
+        ball.physicsBody?.isDynamic = true
+        ball.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 5))
     }
     
     func makeBall() {
@@ -111,6 +130,8 @@ class GameScene: SKScene {
         brick.position = CGPoint(x: frame.midX,
                                  y: frame.maxY - 60)
         addChild(brick)
+        
+        
         
         
         
